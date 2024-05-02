@@ -12,6 +12,11 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import Image from "next/image";
 
+interface PremiumMemberData {
+  name: string;
+  image: string;
+  id: number;
+}
 const PremiumMember = () => {
   return (
     <div className="my-2 mb-2 lg:mb-5">
@@ -55,7 +60,7 @@ const PremiumMember = () => {
             },
           }}
         >
-          {data.map((item, i) => (
+          {data.map((item: PremiumMemberData, i: number) => (
             <SwiperSlide key={i} className=" border shadow-md bg-[#E6E6E6]">
               <div className="mx-auto  text-center mb-3">
                 <div className="relative">

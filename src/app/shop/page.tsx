@@ -1,3 +1,4 @@
+"use client";
 import Container from "@/Components/shared/Container";
 import data from "../../Components/data/shop.json";
 import redPanjabi from "../../assets/shop/red.png";

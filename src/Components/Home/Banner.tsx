@@ -1,7 +1,34 @@
+"use client";
 import Link from "next/link";
 import banner from "../../assets/banner.jpeg";
 import Container from "../shared/Container";
+import React, { useState } from "react";
+
+interface Form {
+  biodata: string;
+  status: string;
+  number: string;
+}
 const Banner = () => {
+  const [formData, setFormData] = useState<Form>({
+    biodata: "",
+    status: "",
+    number: "",
+  });
+
+  const handleChange = (
+    e: React.FormEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target as HTMLInputElement | HTMLSelectElement;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
+    e.preventDefault();
+  };
   return (
     <div>
       <div
@@ -19,7 +46,7 @@ const Banner = () => {
           <div className="relative hidden md:block lg:block md:top-4">
             <div className=" border rounded-md absolute right-0 p-6 lg:p-10  bg-white lg:top-24">
               <div className="space-y-1 lg:space-y-2">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="flex justify-between mb-2 lg:mb-3 flex-col lg:flex-row items-center gap-4">
                     <span className="text-dark w-full lg:w-1/2">
                       Types of Biodata
@@ -28,10 +55,10 @@ const Banner = () => {
                       className="py-2 outline-none w-full lg:w-1/2 px-4 text-white rounded-md bg-purple"
                       name="biodata"
                       id="biodata"
+                      value={formData.biodata}
+                      onChange={handleChange}
                     >
-                      <option value="">
-                        All Biodata
-                      </option>
+                      <option value="">All Biodata</option>
                       <option value="">Boy biodata</option>
                       <option value="">girl biodata</option>
                     </select>
@@ -45,10 +72,10 @@ const Banner = () => {
                       className="py-2 outline-none w-full lg:w-1/2 mb-2 px-4 text-white rounded-md bg-purple"
                       name="status"
                       id="status"
+                      value={formData.status}
+                      onChange={handleChange}
                     >
-                      <option  value="">
-                        All Status
-                      </option>
+                      <option value="">All Status</option>
                       <option value="married">Married</option>
                       <option value="single">Single</option>
                     </select>
@@ -63,6 +90,8 @@ const Banner = () => {
                       type="text"
                       name="number"
                       id=""
+                      value={formData.number}
+                      onChange={handleChange}
                     />
                   </div>
 

@@ -20,6 +20,13 @@ import Ratings from "@/Components/Ratings/Ratings";
 import CommunityReview from "@/Components/Review/CommunityReview";
 const images = [h1, h2, h3, h4, h5, h6, h7];
 
+interface Community {
+  name: string;
+  current: number;
+  old: number;
+  image: string;
+}
+
 const SingleCommunity = () => {
   const [currentImage, setCurrentImage] = useState(images[0]);
 
@@ -129,7 +136,7 @@ const SingleCommunity = () => {
               community centers
             </h1>
             <div className="grid cursor-pointer grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
-              {data.slice(0, 5).map((item, i) => (
+              {data.slice(0, 5).map((item: Community, i: number) => (
                 <div className=" " key={i}>
                   <Image
                     className="w-full h-[160px] md:h-[185px] lg:h-[200px]"
