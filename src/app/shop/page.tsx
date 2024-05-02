@@ -4,8 +4,37 @@ import redPanjabi from "../../assets/shop/red.png";
 import women from "../../assets/shop/women.png";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
 
-const Shop = () => {
+interface ShopProducts {
+  image: string;
+  name: string;
+  current: number;
+  old: number;
+}
+
+interface Form {
+  searchText: string;
+  biodata: string;
+}
+
+const Shop: React.FC = () => {
+  const [formData, setFormData] = useState<Form>({
+    searchText: "",
+    biodata: "",
+  });
+
+  const handleChange = (
+    e: React.FormEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target as HTMLInputElement | HTMLSelectElement;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
+    e.preventDefault();
+    console.log(formData);
+  };
   return (
     <div className="py-2 lg:py-5">
       <Container>
@@ -38,7 +67,7 @@ const Shop = () => {
             </div>
 
             <div className="grid cursor-pointer grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
-              {data.map((item, i) => (
+              {data.map((item: ShopProducts, i: number) => (
                 <div className=" " key={i}>
                   <Image
                     className="w-full h-[160px] md:h-[185px] lg:h-[200px]"
@@ -76,23 +105,34 @@ const Shop = () => {
             <div>
               {/* filter */}
               <div className="hidden lg:block">
-                <form className="flex  mb-5 flex-col gap-y-3">
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex  mb-5 flex-col gap-y-3"
+                >
                   <input
                     type="text"
                     className="w-full px-3 placeholder:text-white py-2 bg-purple text-white rounded-md"
                     placeholder="Search here"
+                    name="searchText"
+                    onChange={handleChange}
+                    value={formData.searchText}
                   />
                   <select
                     className="py-2 outline-none w-full  px-3 text-white rounded-md bg-purple"
                     name="biodata"
                     id="biodata"
+                    onChange={handleChange}
+                    value={formData.biodata}
                   >
                     <option value="">All Categories</option>
                     <option value="">Boy biodata</option>
                     <option value="">girl biodata</option>
                   </select>
 
-                  <button className="text-purple font-semibold rounded-md border border-borderColor w-full py-[6px]">
+                  <button
+                    type="submit"
+                    className="text-purple font-semibold rounded-md border border-borderColor w-full py-[6px]"
+                  >
                     Recently added items
                   </button>
                 </form>

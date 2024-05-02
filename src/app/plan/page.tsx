@@ -1,6 +1,13 @@
 import Container from "@/Components/shared/Container";
 import React from "react";
 import { BsHandbag } from "react-icons/bs";
+interface Plan {
+  name: string;
+  connections: number;
+  price: number;
+  description: string;
+  expiry: string;
+}
 
 interface Plan {}
 const Plan: React.FC = () => {

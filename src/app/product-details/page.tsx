@@ -12,13 +12,20 @@ import women from "../../assets/shop/women.png";
 import returnIcon from "../../assets/shop/retrun.png";
 import delivery from "../../assets/shop/delivery.png";
 import { useState } from "react";
+
+interface Products {
+  name: string;
+  current: number;
+  old: number;
+  image: string;
+}
 const images = [tupi, panjabi, tasbih, women];
 
 const ProductDetails = () => {
   const [currentImage, setCurrentImage] = useState(images[0]);
-  const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   const handleIncrement = () => {
     if (quantity > 0) {
@@ -47,7 +54,8 @@ const ProductDetails = () => {
               <div className="lg:w-[20%] order-2 lg:order-1 h-full">
                 <div className="flex  flex-row mx-auto lg:flex-col  gap-3">
                   {images.map((image, i) => (
-                    <button key={i}
+                    <button
+                      key={i}
                       className="w-full"
                       onClick={() => setCurrentImage(image)}
                     >
@@ -261,7 +269,7 @@ const ProductDetails = () => {
             <IoMdBookmark className="text-purple text-[23px]" /> Related Item
           </h1>
           <div className="grid cursor-pointer grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
-            {data.slice(0, 5).map((item, i) => (
+            {data.slice(0, 5).map((item: Products, i: number) => (
               <div className=" " key={i}>
                 <Image
                   className="w-full h-[160px] md:h-[185px] lg:h-[200px]"
