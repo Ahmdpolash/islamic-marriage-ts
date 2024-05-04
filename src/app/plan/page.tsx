@@ -9,7 +9,6 @@ interface Plan {
   expiry: string;
 }
 
-interface Plan {}
 const Plan: React.FC = () => {
   return (
     <div className="my-2">

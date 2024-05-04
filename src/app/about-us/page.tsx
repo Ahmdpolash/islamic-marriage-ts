@@ -13,7 +13,7 @@ interface AboutUsProps {
 
 const AboutUs: React.FC<AboutUsProps> = () => {
   return (
-    <div className="my-4"> 
+    <div className="my-4">
       <Container>
         <div className="lg:h-[85vh] w-full grid grid-cols-1 lg:grid-cols-2 gap-5 items-center">
           <div className="order-2 lg:order-1 space-y-2 lg:space-y-3">

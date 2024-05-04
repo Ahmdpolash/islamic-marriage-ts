@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const HappyCouple = () => {
   return (
-    <div className="max-w-4xl mx-auto mt-5 lg:mt-8 mb-5">
+    <div className="max-w-4xl texpu mx-auto mt-5 lg:mt-8 mb-5">
       <Swiper
         slidesPerView={3}
         spaceBetween={20}

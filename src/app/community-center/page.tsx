@@ -3,20 +3,16 @@ import data from "../../Components/data/community.json";
 import Link from "next/link";
 import Image from "next/image";
 import Ratings from "@/Components/Ratings/Ratings";
+import { NextPage } from "next";
 
-interface Community {
-  name: string;
-  current: number;
-  old: number;
-  image: string;
-}
 
-const CommunityCenter: React.FC = () => {
+
+const CommunityCenter: NextPage = () => {
   return (
     <div className="my-4 lg:my-6">
       <Container>
         <div className="grid cursor-pointer grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
-          {data.map((item: Community, i: number) => (
+          {data.map((item , i) => (
             <div className=" " key={i}>
               <Image
                 className="w-full h-[160px] md:h-[185px] lg:h-[200px]"
